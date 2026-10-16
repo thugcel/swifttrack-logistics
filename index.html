@@ -1,190 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1830">
-  <title>SwiftTrack Logistics | Track Your Shipment</title>
   <meta name="description" content="SwiftTrack Logistics delivery services and shipment tracking.">
+  <title>SwiftTrack Logistics | Track Your Shipment</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy: #0b1830;
-      --gold: #e6b451;
-      --light: #f4f6fa;
-      --muted: #68758a;
-    }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #17243a;
-      background: white;
-      line-height: 1.6;
-    }
-    a { text-decoration: none; }
-    .container { width: 90%; max-width: 1100px; margin: auto; }
-    header { background: var(--navy); color: white; }
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-    .brand { color: white; font-weight: 800; font-size: 20px; }
-    .brand span { color: var(--gold); }
-    .navlinks { display: flex; gap: 20px; align-items: center; }
-    .navlinks a { color: white; font-size: 14px; }
-    .hero {
-      background: linear-gradient(115deg, #0b1830, #18385b);
-      color: white;
-      padding: 65px 0 75px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: center;
-      gap: 35px;
-    }
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-    h1 { font-size: clamp(34px, 6vw, 53px); line-height: 1.12; margin: 15px 0; }
-    .hero p { color: #d5dfed; margin-bottom: 24px; }
-    .button {
-      display: inline-block;
-      background: var(--gold);
-      color: #101d31;
-      border: 0;
-      padding: 13px 19px;
-      border-radius: 7px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .hero-art {
-      background: #203c5e;
-      border: 1px solid #395474;
-      border-radius: 18px;
-      min-height: 230px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 25px;
-    }
-    .hero-art .truck { font-size: 82px; }
-    .hero-art h2 { color: white; font-size: 21px; }
-    .hero-art p { font-size: 13px; margin: 5px 0 0; }
-    section { padding: 55px 0; }
-    .section-title { text-align: center; margin-bottom: 28px; }
-    .section-title h2 { color: var(--navy); font-size: 29px; }
-    .section-title p { color: var(--muted); margin-top: 5px; }
-    .tracking { background: var(--light); }
-    .track-card {
-      background: white;
-      max-width: 650px;
-      margin: auto;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 8px 30px #14213b0d;
-    }
-    label { display: block; font-weight: bold; margin-bottom: 8px; }
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #cbd3df;
-      border-radius: 7px;
-      font-size: 16px;
-      margin-bottom: 13px;
-    }
-    .track-card .button { width: 100%; }
-    .hint { font-size: 12px; color: var(--muted); margin-top: 10px; }
-    #tracking-result {
-      margin-top: 20px;
-      padding: 16px;
-      border-radius: 8px;
-      background: #edf3f9;
-      display: none;
-    }
-    #tracking-result h3 { color: var(--navy); margin-bottom: 8px; }
-    .status { color: #146b43; font-weight: bold; }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .service {
-      border: 1px solid #e2e7ef;
-      border-radius: 12px;
-      padding: 23px;
-    }
-    .service .emoji { font-size: 32px; }
-    .service h3 { color: var(--navy); margin: 10px 0 5px; }
-    .service p { color: var(--muted); font-size: 14px; }
-    .steps { background: var(--light); }
-    .step-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      text-align: center;
-    }
-    .step-number {
-      background: var(--gold);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 12px;
-      font-weight: bold;
-    }
-    .step-grid p { color: var(--muted); font-size: 14px; }
-    .support {
-      background: var(--navy);
-      color: white;
-      text-align: center;
-    }
-    .support h2 { font-size: 29px; }
-    .support p { color: #d5dfed; margin: 10px 0 22px; }
-    footer {
-      background: #071121;
-      color: #c6d0df;
-      text-align: center;
-      padding: 22px 10px;
-      font-size: 13px;
-    }
-    @media (max-width: 700px) {
-      .navlinks { gap: 11px; }
-      .navlinks a { font-size: 12px; }
-      .brand { font-size: 17px; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero { padding: 45px 0; }
-      .hero-art { min-height: 170px; }
-      .hero-art .truck { font-size: 55px; }
-      .services { grid-template-columns: 1fr; }
-      .step-grid { grid-template-columns: 1fr; }
-      section { padding: 42px 0; }
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0b1830;--gold:#e6b451;--light:#f4f6fa;--muted:#68758a}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;color:#17243a;background:#fff;line-height:1.6}
+    a{text-decoration:none}
+    .container{width:90%;max-width:1100px;margin:auto}
+    header{background:var(--navy);color:#fff}
+    nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 0}
+    .brand{color:#fff;font-weight:800;font-size:20px}
+    .brand span{color:var(--gold)}
+    .navlinks{display:flex;gap:20px;align-items:center}
+    .navlinks a{color:#fff;font-size:14px}
+    .navlinks a:hover{color:var(--gold)}
+    .hero{background:linear-gradient(115deg,#0b1830,#18385b);color:#fff;padding:65px 0 75px}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:35px}
+    .eyebrow{color:var(--gold);text-transform:uppercase;font-weight:bold;font-size:12px;letter-spacing:2px}
+    h1{font-size:clamp(34px,6vw,53px);line-height:1.12;margin:15px 0}
+    .hero p{color:#d5dfed;margin-bottom:24px}
+    .button{display:inline-block;background:var(--gold);color:#101d31;border:0;padding:13px 19px;border-radius:7px;font-weight:bold;cursor:pointer;font-size:16px}
+    .button:disabled{opacity:.65;cursor:wait}
+    .hero-art{background:#203c5e;border:1px solid #395474;border-radius:18px;min-height:230px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px}
+    .truck{font-size:82px}.hero-art h2{color:#fff;font-size:21px}.hero-art p{font-size:13px;margin:5px 0 0}
+    section{padding:55px 0}
+    .section-title{text-align:center;margin:0 auto 28px;max-width:680px}
+    .section-title h2{color:var(--navy);font-size:29px}
+    .section-title p{color:var(--muted);margin-top:5px}
+    .tracking,.steps{background:var(--light)}
+    .track-card{background:#fff;max-width:650px;margin:auto;padding:25px;border-radius:14px;box-shadow:0 8px 30px #14213b0d}
+    label{display:block;font-weight:bold;margin-bottom:8px}
+    input{width:100%;padding:14px;border:1px solid #cbd3df;border-radius:7px;font-size:16px;margin-bottom:13px}
+    input:focus{outline:2px solid var(--gold);outline-offset:1px}
+    .track-card .button{width:100%}
+    .hint{font-size:12px;color:var(--muted);margin-top:10px}
+    #tracking-result{margin-top:20px;padding:16px;border-radius:8px;background:#edf3f9;display:none;overflow-wrap:anywhere}
+    #tracking-result h3{color:var(--navy);margin-bottom:8px}
+    #tracking-result p{margin:6px 0}
+    .status{color:#146b43;font-weight:bold}
+    .services,.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service{border:1px solid #e2e7ef;border-radius:12px;padding:23px}
+    .service .emoji{font-size:32px}.service h3{color:var(--navy);margin:10px 0 5px}.service p,.step-grid p{color:var(--muted);font-size:14px}
+    .step-grid{text-align:center}
+    .step-number{background:var(--gold);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;font-weight:bold}
+    .support{background:var(--navy);color:#fff;text-align:center}
+    .support h2{font-size:29px}.support p{color:#d5dfed;margin:10px 0 22px}
+    footer{background:#071121;color:#c6d0df;text-align:center;padding:22px 10px;font-size:13px}
+    @media(max-width:700px){nav{align-items:flex-start;flex-direction:column;justify-content:center}.navlinks{gap:14px;flex-wrap:wrap}.navlinks a{font-size:13px}.brand{font-size:18px}.hero-grid{grid-template-columns:1fr}.hero{padding:45px 0}.hero-art{min-height:170px}.truck{font-size:55px}.services,.step-grid{grid-template-columns:1fr}section{padding:42px 0}.track-card{padding:18px}}
   </style>
 </head>
 <body>
   <header>
-    <nav class="container">
-      <a class="brand" href="#">SwiftTrack <span>Logistics</span></a>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">SwiftTrack <span>Logistics</span></a>
       <div class="navlinks">
-        <a href="#services">Services</a>
-        <a href="#tracking">Track</a>
-        <a href="#support">Support</a>
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#tracking">Track</a><a href="#support">Support</a>
       </div>
     </nav>
   </header>
-
   <main>
-    <section class="hero">
+    <section class="hero" id="home">
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Delivering with confidence</div>
@@ -192,126 +73,134 @@
           <p>Reliable delivery solutions designed to keep your shipments moving and you informed along the way.</p>
           <a class="button" href="#tracking">Track a Shipment →</a>
         </div>
-        <div class="hero-art">
-          <div>
-            <div class="truck">🚚</div>
-            <h2>Every Delivery Matters</h2>
-            <p>Fast. Careful. Dependable.</p>
-          </div>
-        </div>
+        <div class="hero-art"><div><div class="truck" aria-hidden="true">🚚</div><h2>Every Delivery Matters</h2><p>Fast. Careful. Dependable.</p></div></div>
       </div>
     </section>
-
     <section class="tracking" id="tracking">
       <div class="container">
-        <div class="section-title">
-          <h2>Track Your Shipment</h2>
-          <p>Enter the tracking code provided by our team.</p>
-        </div>
+        <div class="section-title"><h2>Track Your Shipment</h2><p>Enter the tracking code provided by our authorised team.</p></div>
         <div class="track-card">
           <form id="track-form">
             <label for="tracking-code">Tracking code</label>
-            <input id="tracking-code" placeholder="e.g. ST-2026-004821" required>
-            <button class="button" type="submit">Track Package</button>
+            <input id="tracking-code" name="tracking-code" placeholder="e.g. ST-AA9F402A" autocomplete="off" autocapitalize="characters" required>
+            <button class="button" id="track-button" type="submit">Track Package</button>
           </form>
-          <div id="tracking-result" aria-live="polite"></div>
-          <p class="hint">Demo only: try ST-2026-004821 to see a sample result. Real shipment records are not connected yet.</p>
+          <div id="tracking-result" aria-live="polite" role="status"></div>
+          <p class="hint">Use the tracking code supplied by SwiftTrack Logistics. Only recorded shipment information will be shown.</p>
         </div>
       </div>
     </section>
-
     <section id="services">
       <div class="container">
-        <div class="section-title">
-          <h2>Our Delivery Services</h2>
-          <p>Solutions for personal and business shipments.</p>
-        </div>
+        <div class="section-title"><h2>Our Delivery Services</h2><p>Solutions for personal and business shipments.</p></div>
         <div class="services">
-          <article class="service">
-            <div class="emoji">📦</div>
-            <h3>Parcel Delivery</h3>
-            <p>Careful handling of parcels and packages from collection to destination.</p>
-          </article>
-          <article class="service">
-            <div class="emoji">🏢</div>
-            <h3>Business Logistics</h3>
-            <p>Delivery support for businesses and their everyday shipping needs.</p>
-          </article>
-          <article class="service">
-            <div class="emoji">🚚</div>
-            <h3>Express Delivery</h3>
-            <p>A delivery option for shipments that need priority handling.</p>
-          </article>
+          <article class="service"><div class="emoji">📦</div><h3>Parcel Delivery</h3><p>Careful handling of parcels and packages from collection to destination.</p></article>
+          <article class="service"><div class="emoji">🏢</div><h3>Business Logistics</h3><p>Delivery support for businesses and their everyday shipping needs.</p></article>
+          <article class="service"><div class="emoji">🚚</div><h3>Express Delivery</h3><p>A delivery option for shipments that need priority handling.</p></article>
         </div>
       </div>
     </section>
-
     <section class="steps">
       <div class="container">
-        <div class="section-title">
-          <h2>How It Works</h2>
-          <p>Three simple steps to follow your shipment.</p>
-        </div>
+        <div class="section-title"><h2>How It Works</h2><p>Three simple steps to follow your shipment.</p></div>
         <div class="step-grid">
-          <div>
-            <div class="step-number">1</div>
-            <h3>Register</h3>
-            <p>Our authorised staff register your shipment.</p>
-          </div>
-          <div>
-            <div class="step-number">2</div>
-            <h3>Get Your Code</h3>
-            <p>Receive a unique tracking code for your package.</p>
-          </div>
-          <div>
-            <div class="step-number">3</div>
-            <h3>Track</h3>
-            <p>Use your code to check the latest delivery status.</p>
-          </div>
+          <div><div class="step-number">1</div><h3>Register</h3><p>Authorised staff records your shipment.</p></div>
+          <div><div class="step-number">2</div><h3>Get Your Code</h3><p>Receive a unique tracking code for your package.</p></div>
+          <div><div class="step-number">3</div><h3>Track</h3><p>Use your code to check the latest recorded status.</p></div>
         </div>
       </div>
     </section>
-
     <section class="support" id="support">
-      <div class="container">
-        <h2>Need Help With a Shipment?</h2>
-        <p>Our support team will help you with your delivery questions.</p>
-        <a class="button" href="mailto:support@example.com">Contact Support</a>
-        <p style="font-size:12px;margin-top:14px">Replace the sample support email with your real company email before launch.</p>
-      </div>
+      <div class="container"><h2>Need Help With a Shipment?</h2><p>Our support team will help with delivery questions.</p><a class="button" href="mailto:support@example.com">Contact Support</a><p class="hint">Before launch, replace support@example.com with your real support email.</p></div>
     </section>
   </main>
-
-  <footer>
-    <p>© <span id="year"></span> SwiftTrack Logistics. All rights reserved.</p>
-    <p>Reliable delivery. Clear tracking.</p>
-  </footer>
-
+  <footer><p>© <span id="year"></span> SwiftTrack Logistics. All rights reserved.</p><p>Reliable delivery. Clear tracking.</p></footer>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.getElementById("track-form").addEventListener("submit", function(event) {
+    // This is the Supabase project URL and public publishable key.
+    // Never put a secret/service-role key in this public file.
+    const SUPABASE_URL = "https://lpbogdmeummgjrnaxsrc.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_eP9HMHvvWSdrBt9yuNK17Q_y-arpvCP";
+
+    const form = document.getElementById("track-form");
+    const input = document.getElementById("tracking-code");
+    const result = document.getElementById("tracking-result");
+    const button = document.getElementById("track-button");
+
+    form.addEventListener("submit", async function(event) {
       event.preventDefault();
+      const code = input.value.trim().toUpperCase();
+      if (!code) {
+        result.style.display = "block";
+        result.textContent = "Please enter your tracking code.";
+        return;
+      }
 
-      const code = document.getElementById("tracking-code").value.trim().toUpperCase();
-      const result = document.getElementById("tracking-result");
       result.style.display = "block";
+      result.textContent = "Checking your shipment...";
+      button.disabled = true;
+      button.textContent = "Checking...";
 
-      if (code === "ST-2026-004821") {
-        result.innerHTML =
-          "<h3>Sample Shipment Found</h3>" +
-          "<p><strong>Tracking code:</strong> ST-2026-004821</p>" +
-          "<p><strong>Status:</strong> <span class='status'>In Transit</span></p>" +
-          "<p><strong>Update:</strong> Your sample shipment is on its way to the destination.</p>" +
-          "<p class='hint'>This is demonstration data, not a real parcel record.</p>";
-      } else {
-        result.innerHTML =
-          "<h3>Shipment Not Found</h3>" +
-          "<p>We couldn't find that code in this demo. Please check the code or contact support.</p>" +
-          "<p class='hint'>Real shipment lookup will work after we connect the secure database.</p>";
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/track_shipment`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`
+          },
+          body: JSON.stringify({ lookup_code: code })
+        });
+
+        if (!response.ok) {
+          // Avoid exposing technical database details to website visitors.
+          throw new Error("Tracking request failed");
+        }
+
+        const data = await response.json();
+        result.replaceChildren();
+
+        if (Array.isArray(data) && data.length > 0) {
+          const shipment = data[0];
+          const heading = document.createElement("h3");
+          heading.textContent = "Shipment Found";
+          result.appendChild(heading);
+
+          for (const [label, value] of [
+            ["Tracking code", shipment.tracking_code],
+            ["Destination", shipment.destination],
+            ["Status", shipment.status]
+          ]) {
+            const paragraph = document.createElement("p");
+            const strong = document.createElement("strong");
+            strong.textContent = label + ": ";
+            if (label === "Status") {
+              const status = document.createElement("span");
+              status.className = "status";
+              status.textContent = value == null ? "Not available" : String(value);
+              paragraph.append(strong, status);
+            } else {
+              paragraph.append(strong, document.createTextNode(value == null ? "Not available" : String(value)));
+            }
+            result.appendChild(paragraph);
+          }
+        } else {
+          const heading = document.createElement("h3");
+          heading.textContent = "Shipment Not Found";
+          result.appendChild(heading);
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "We couldn't find that tracking code. Check it and try again.";
+          result.appendChild(paragraph);
+        }
+      } catch (error) {
+        result.textContent = "We couldn't check tracking right now. Please try again later.";
+      } finally {
+        button.disabled = false;
+        button.textContent = "Track Package";
       }
     });
   </script>
 </body>
- </html>
- 
+						</html>
+																		 
